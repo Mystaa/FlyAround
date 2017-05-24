@@ -1,0 +1,33 @@
+WCS\CoavBundle\Entity\Flight:
+    type: entity
+    table: null
+    repositoryClass: WCS\CoavBundle\Repository\FlightRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        freeSeats:
+            type: integer
+        takeofTime:
+            type: datetime
+        pilot:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }
+    manyToOne:
+        departure:
+            targetEntity: WCS\CoavBundle\Entity\Terrain
+            inversedBy: departures
+        arrival:
+            targetEntity: WCS\CoavBundle\Entity\Terrain
+            inversedBy: arrivals
+        plane:
+            targetEntity: WCS\CoavBundle\Entity\PlaneModel
+            inversedBy: flights
+    oneToMany:
+        reservations:
+            targetEntity: WCS\CoavBundle\Entity\Reservation
+            mappedBy: flight
